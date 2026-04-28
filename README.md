@@ -1,31 +1,32 @@
 # 🎤 AI Meeting Assistant
 
-A simple AI-based tool that converts meeting audio into structured insights using **Speech-to-Text** and LLMs.
+A basic AI project that converts meeting audio into useful insights using **Speech-to-Text (STT)** and LLMs.
 
 ---
 
-## 🚀 What it does
+## 🚀 Features
 
-* 🎧 Converts audio → text (Speech-to-Text)
-* 🧠 Cleans financial/product terms
-* 📝 Generates meeting summary
-* 📌 Extracts tasks
+* 🎧 Audio → Text transcription (core feature)
+* 🧠 Financial term normalization
+* 📝 Meeting summary generation
+* 📌 Task extraction
 
 ---
 
-## 🔥 Core Feature: Speech-to-Text
+## 🔥 Core Focus: Speech-to-Text
 
-This project uses **Whisper** to transcribe audio files:
+This project uses **Whisper** to convert audio into text:
 
 ```python
-pipe = pipeline(
+pipeline(
     "automatic-speech-recognition",
     model="openai/whisper-tiny.en"
 )
 ```
 
-* Supports `.wav`, `.mp3`, etc.
-* Uses **FFmpeg** for audio processing
+* Handles `.wav`, `.mp3`, etc.
+* Uses **FFmpeg** for audio decoding
+* Acts as the base for all further processing
 
 ---
 
@@ -33,12 +34,18 @@ pipe = pipeline(
 
 ```
 .
-├── main.py              # Run main app
-├── llm.py               # LLM logic (Groq + LangChain)
-├── trialSST.py          # Speech-to-text pipeline
-├── getaudio.py          # Audio handling
-├── testinterface.py     # Gradio UI
-├── audio_sample.wav     # Sample input
+├── app/
+│   └── main.py              # Gradio UI
+│
+├── services/
+│   ├── getaudio.py          # Audio handling
+│   ├── llm.py               # Groq + LangChain logic
+│   ├── pipeline.py          # End-to-end flow (STT → LLM)
+│
+├── testing/
+│   └── testinterface.py     # test UI
+│
+├── audio_sample.wav
 ├── requirements.txt
 └── README.md
 ```
@@ -49,7 +56,7 @@ pipe = pipeline(
 
 ### 1. Install dependencies
 
-```
+```bash
 pip install -r requirements.txt
 ```
 
@@ -61,23 +68,23 @@ Create `.env`:
 GROQ_API_KEY=your_api_key
 ```
 
-### 3. Run
+### 3. Run the app
 
-```
-python main.py
+```bash
+python app/main.py
 ```
 
 ---
 
 ## ⚠️ Requirements
 
-* Python 3.10/3.11
-* FFmpeg installed (required for audio)
+* Python 3.10 / 3.11
+* FFmpeg installed and added to PATH
 
 ---
 
 ## 📌 Note
 
-This is a **base project** demonstrating how speech-to-text can be used as the foundation for building AI-powered meeting tools.
+This is a **base-level project** showing how **Speech-to-Text can be used as the foundation** for building AI-powered meeting assistants.
 
 ---
