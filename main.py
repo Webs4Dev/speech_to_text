@@ -2,7 +2,7 @@ import os
 import gradio as gr
 from langchain_groq import ChatGroq
 from llm import product_assistant,get_chain
-from trialSST import get_pipe
+from trialSTT import get_pipe
 
 def transcript_audio(audio_file):
     pipe = get_pipe()
